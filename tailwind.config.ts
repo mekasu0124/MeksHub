@@ -9,6 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        foreground: '#8e45cd',
+        textShadow: '#705293',
+        bg2: '#4c4062',
+        btnBg: '#412b51',
       },
     },
     fontFamily: {
