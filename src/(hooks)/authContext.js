@@ -1,56 +1,44 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-
+import { useContext, createContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from './api';
 
-const AuthContext = createContext(undefined);
+const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState('');
 
-  const router = useRouter();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    };
-  }, [setUser]);
-
-  const login = (userData) => {
-    try {
-      const response = api.post('/users/login', userData);
-
-      if (response.data.user && response.data.token) {
-        setUser(response.data.user);
-        setToken(response.data.token);
-
-        localStorage.setItem('user', JSON.stringify(response.data.user));
-        localStorage.setItem('token', response.data.token);
-
-        return router.push('/dashboard');
-      } else {
-        throw new Error('Invalid credentials');
-      }
-    } catch (error) {
-      console.error(error);
-      throw new Error('Failed to login');
-    }
+  const loginAction = async (loginData, callback) => {
+    await api.post("/users/login", loginData)
+      .then(result => {
+        setUser(result.data.user);
+        setToken(result.data.token);
+        return navigate("/dashboard");
+      })
+      .catch(err => {
+        console.error(err);
+        return callback("Authentication Failed");
+      });
   };
 
-  const logout = () => {
+  const logOutAction = async () => {
     setUser(null);
-    localStorage.removeItem('user');
-    router.push('/login');
+    setToken("");
+
+    setTimeout(() => {
+      return navigate('/');
+    }, 500);
   };
 
-  return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ token, user, loginAction, logOutAction }}>
+          {children}
+         </AuthContext.Provider>
 };
 
-export const useAuth = () => useContext(AuthContext);
+export default AuthProvider;
+
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
