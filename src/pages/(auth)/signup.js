@@ -69,10 +69,14 @@ export default function SignUp() {
         setIsSuccess(true);
         setSuccessText(response.data.message);
 
+        localStorage.setItem("user_id", response.data.user_id);
+
         setTimeout(() => {
           setIsSuccess(false);
           setSuccessText('');
-          return navigate('/validate-email', { state: { newUserData } });
+          return navigate('/dashboard');
+          // uncomment line below once verifying email and phone are fully functional
+          // return navigate('/validate-email', { state: { newUserData } });
         }, 3000);
       } else {
         setErrorText(response.message);
@@ -95,7 +99,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-start w-full h-[100vh]">
+    <div className="flex flex-col items-center justify-start w-full h-[95vh]">
       <div className="flex flex-col items-center justify-center w-[60%] h-24 mt-3 tracking-widest">
         <h1 className="font-inkfree text-[#C6C6C6] text-3xl font-bold italic txtShadow2">
           Let&#39;s Get You Started With An Account!

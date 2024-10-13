@@ -15,6 +15,9 @@ const AuthProvider = ({ children }) => {
       .then(result => {
         setUser(result.data.user);
         setToken(result.data.token);
+
+        localStorage.setItem("user_id", result.data.user.user_id);
+        localStorage.setItem("token", result.data.token);
         return navigate("/dashboard");
       })
       .catch(err => {

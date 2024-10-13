@@ -31,7 +31,7 @@ export default function ValidateEmail() {
             
             user.emailValid = true;
   
-            return navigate('/verify-phone', { state: { user } });
+            // return navigate('/verify-phone', { state: { user } });
           }, 3000);
         } else {
           setErrorText(response.message);
@@ -55,7 +55,12 @@ export default function ValidateEmail() {
     };
 
     if (user && !user.emailValid) {
+      console.log('Sending verification code...');
       sendVerificationCode(user.email);
+    } else if (user && user.emailValid) {
+      console.log('User is already verified...');
+    } else {
+      console.log('No User Found...');
     }
   }, [navigate, user]);
 

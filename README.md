@@ -1,3 +1,6 @@
+> NOTE: APPLICATION IS PAUSED UNTIL FURTHER NOTICE
+
+
 <a href="top"></a>
 
 <div align="center">

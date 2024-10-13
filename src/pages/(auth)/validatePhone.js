@@ -23,7 +23,16 @@ export default function ValidatePhone() {
 
     try {
       const response = await api.post('')
-    }
+    } catch (err) {
+      setErrorText(err.message);
+      setIsError(true);
+
+      setTimeout(() => {
+        setIsError(false);
+        setErrorText('');
+        setUserInputPhoneCode('');
+      }, 3000);
+    };
   };
 
   const updatePhoneValidity = async (phone) => {};
