@@ -64,47 +64,68 @@ export default function Login() {
 
       <div classname="flex flex-col items-center justify-center w-full flex-1 mt-5">
         <form className="flex flex-col items-center justify-evenly w-full h-[800px]" onSubmit={handleSubmit}>
-          <div className="flex flex-col items-center justify-evenly w-[60%] h-[600px] shadow-black shadow-xl rounded-xl">
-            <div className="flex flex-row items-center justify-evenly w-[80%]">
-              <label htmlFor="username" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Username</label>
+          <div className="flex flex-col items-center justify-evenly w-[60%] h-[600px] shadow-black shadow-xl rounded-xl bg-bg2">
+            <div className="flex flex-col items-center justify-evenly w-full flex-1">
+              <div className="flex flex-row items-center justify-evenly w-[80%]">
+                <label htmlFor="username" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Username</label>
+                
+                <input type="text"
+                      id="username"
+                      name="username"
+                      value={postData.username}
+                      onChange={handleChange}
+                      required
+                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
+              </div>
               
-              <input type="text"
-                    id="username"
-                    name="username"
-                    value={postData.username}
-                    onChange={handleChange}
-                    required
-                    className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none" />
-            </div>
-            
-            <div className="flex flex-row items-center justify-evenly w-[80%]">
-              <label htmlFor="password" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Password</label>
-              
-              <input type="password"
-                    id="password"
-                    name="password"
-                    value={postData.password}
-                    onChange={handleChange}
-                    required
-                    className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none" />
+              <div className="flex flex-row items-center justify-evenly w-[80%]">
+                <label htmlFor="password" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Password</label>
+                
+                <input type="password"
+                      id="password"
+                      name="password"
+                      value={postData.password}
+                      onChange={handleChange}
+                      required
+                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
+              </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center w-full h-14">
+            <div className="flex flex-col items-center justify-center w-full h-14 flex-shrink-0">
               {isError && (<div className="bg-red-950 text-gray-400 text-center rounded-full border-2 border-black w-[20%] p-1">{errorText}</div>)}
               {isSuccess && (<div className="bg-green-950 text-gray-400 text-center rounded-full border-2 border-black w-[20%] p-1">{successText}</div>)}
             </div>
 
-            <div className="flex flex-row items-center justify-evenly w-full">
-              <div className="flex flex-col items-center justify-center w-[45%]">
-                <button type="button" onClick={() => navigate('/')} className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none">Cancel</button>
+            <div className="flex flex-col items-center justify-center w-full p-2">
+              <div className="flex flex-row item-center justify-evenly w-full mb-5">
+                <button 
+                  type="button" 
+                  onClick={() => navigate('/')} 
+                  className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2">
+                  Cancel
+                </button>
                 
-                <button type="button" onClick={() => navigate('/auth/forgot')} className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none">Forgot Password</button>
+                <button 
+                  type="submit" 
+                  className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2">
+                  Login
+                </button>
               </div>
-              
-              <div className="flex flex-col items-center justify-center w-[45%]">
-                <button type="submit" className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none">Login</button>
+
+              <div className="flex flex-row items-center justify-evenly w-full">
+                <button 
+                  type="button" 
+                  onClick={() => navigate('/auth/forgot')} 
+                  className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2">
+                  Forgot Password
+                </button>
                 
-                <button type="button" onClick={() => navigate('/auth/signup')} className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none">New User</button>
+                <button 
+                  type="button" 
+                  onClick={() => navigate('/auth/signup')} 
+                  className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2">
+                  New User
+                </button>
               </div>
             </div>
           </div>
