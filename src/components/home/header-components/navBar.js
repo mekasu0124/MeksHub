@@ -13,6 +13,7 @@ export default function NavBar() {
       <div className="flex flex-row items-center justify-end w-full mr-5">
         <Link to="/" className="font-inkfree text-xl text-fg italic hover:underline ml-2 mr-2">About Us</Link>
         <Link to="/" className="font-inkfree text-xl text-fg italic hover:underline ml-2 mr-2">Support</Link>
+        <Link to="https://discord.gg/vU7BHVtHdR" target="_blank" className="font-inkfree text-xl text-fg italic hover:underline ml-2 mr-2">Join Our Discord</Link>
       </div>
     </div>
   );
