@@ -21,5 +21,5 @@ export default function Home() {
     )
   }
 
-  return navigate('/dashboard');
+  return navigate('/hub/dashboard');
 };
