@@ -20,8 +20,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await api.post('/hub/auth/login', postData);
 
-      console.log(response);
-
       if (response.status === 200) {
         const { message, token, user } = response.data;
 
