@@ -6,6 +6,7 @@ import SignUp from './pages/auth/signup';
 import Login from './pages/auth/login';
 import ForgotPassword from './pages/auth/forgot';
 import Dashboard from './pages/dashboard/dashboard';
+import AdminDashboard from './pages/admin/dashboard.js';
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
 
           <Route path="/hub">
             <Route path="dashboard" element={<Dashboard />} />
+
+            <Route path="admin">
+              <Route path="dashboard" element={<AdminDashboard />} />
+            </Route>
           </Route>
         </Routes>
       </AuthProvider>
