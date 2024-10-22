@@ -1,9 +1,15 @@
-import Title from '../universal/title';
-
 export default function Main() {
   return (
     <main className="flex flex-col items-center justify-start w-full flex-1">
-      <Title props={{ title: 'Welcome To Mek\'s Hub!', subtitle: 'A Platform Full Of Software For Users To Enjoy!'}} />
+      <div className="flex flex-col items-center justify-center w-full flex-shrink-0 mt-5">
+        <h1 className="font-inkfree italic text-fg text-3xl tracking-widest">
+          Welcome To Mek&#39;s Hub!
+        </h1>
+
+        <h3 className="font-inkfree italic text-fg text-xl mt-2 tracking-widest">
+          A Platform Full Of Software For Users To Enjoy!
+        </h3>
+      </div>
 
       <div className="flex flex-row items-center justify-evenly flex-1 w-full">
         <div className="flex flex-col items-center justify-evenly w-[30%] h-[500px] shadow-black shadow-xl rounded-lg p-2">

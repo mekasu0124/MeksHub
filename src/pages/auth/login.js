@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useAuth } from '../../hooks/authContext';
 import { useNavigate } from 'react-router-dom';
 
-import Title from '../../components/universal/title';
-
 
 export default function Login() {
   const [postData, setPostData] = useState({
@@ -33,15 +31,29 @@ export default function Login() {
     try {
       const response = await login(postData);
 
-      setSuccessText(response);
-      setIsSuccess(true);
+      if (response.status === 200) {
 
-      setTimeout(() => {
-        setIsSuccess(false)
-        setSuccessText('');
+        setSuccessText(response.message);
+        setIsSuccess(true);
+  
+        setTimeout(() => {
+          setIsSuccess(false)
+          setSuccessText('');
+  
+          return navigate('/hub/dashboard');
+        }, 3000);
+      } else {
+        setErrorText(response);
+        setIsError(true);
 
-        return navigate('/hub/dashboard');
-      }, 3000);
+        setTimeout(() => {
+          postData.username = '';
+          postData.password = '';
+
+          setIsError(false);
+          return setErrorText('');
+        }, 5000);
+      }
     } catch (err) {
       setErrorText(err);
       setIsError(true);
@@ -60,9 +72,15 @@ export default function Login() {
 
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <Title props={{ title: "Login To Get Started!" }} />
+      <div className="flex flex-row justify-start items-center w-full">
+        <div className="flex flex-col items-center justify-center w-full flex-shrink-0 mt-5">
+          <h1 className="font-inkfree italic text-fg text-3xl tracking-widest">
+            Login To Get Started
+          </h1>
+        </div>
+      </div>
 
-      <div classname="flex flex-col items-center justify-center w-full flex-1 mt-5">
+      <div className="flex flex-col items-center justify-center w-full flex-1 mt-5">
         <form className="flex flex-col items-center justify-evenly w-full h-[800px]" onSubmit={handleSubmit}>
           <div className="flex flex-col items-center justify-evenly w-[60%] h-[600px] shadow-black shadow-xl rounded-xl bg-bg2">
             <div className="flex flex-col items-center justify-evenly w-full flex-1">
@@ -75,7 +93,7 @@ export default function Login() {
                       value={postData.username}
                       onChange={handleChange}
                       required
-                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
+                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
               </div>
               
               <div className="flex flex-row items-center justify-evenly w-[80%]">
@@ -87,7 +105,7 @@ export default function Login() {
                       value={postData.password}
                       onChange={handleChange}
                       required
-                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
+                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
               </div>
             </div>
 

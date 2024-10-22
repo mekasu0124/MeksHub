@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import api from '../../hooks/api';
 
-import Title from '../../components/universal/title';
-
 export default function SignUp() {
   const [newUserData, setNewUserData] = useState({
     firstName: '',
@@ -70,7 +68,13 @@ export default function SignUp() {
 
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <Title props={{ title: "Creating A New Account" }} />
+      <div className="flex flex-row justify-start items-center w-full">
+        <div className="flex flex-col items-center justify-center w-full flex-shrink-0 mt-5">
+          <h1 className="font-inkfree italic text-fg text-3xl tracking-widest">
+            Creating A New Account
+          </h1>
+        </div>
+      </div>
 
       <div className="flex flex-col items-center justify-center w-full flex-1 mt-5">
         <form className="flex flex-col items-center justify-evenly w-full h-[800px]" onSubmit={handleSubmit}>
@@ -85,7 +89,7 @@ export default function SignUp() {
                       value={newUserData.firstName}
                       onChange={handleChange}
                       required
-                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none" />
+                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
               </div>
               
               <div className="flex flex-row items-center justify-evenly w-[80%]">
@@ -97,7 +101,7 @@ export default function SignUp() {
                       value={newUserData.lastName}
                       onChange={handleChange}
                       required
-                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none" />
+                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
               </div>
               
               <div className="flex flex-row items-center justify-evenly w-[80%]">
@@ -109,7 +113,7 @@ export default function SignUp() {
                       value={newUserData.email}
                       onChange={handleChange}
                       required
-                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none" />
+                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
               </div>
               
               <div className="flex flex-row items-center justify-evenly w-[80%]">
@@ -121,7 +125,7 @@ export default function SignUp() {
                       value={newUserData.username}
                       onChange={handleChange}
                       required
-                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none" />
+                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
               </div>
               
               <div className="flex flex-row items-center justify-evenly w-[80%]">
@@ -132,7 +136,7 @@ export default function SignUp() {
                       name="discordUsername"
                       value={newUserData.discordUsername}
                       onChange={handleChange}
-                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none" />
+                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
               </div>
             </div>
 
@@ -146,7 +150,7 @@ export default function SignUp() {
                       value={newUserData.phoneNumber}
                       onChange={handleChange}
                       required
-                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none" />
+                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
               </div>
               
               <div className="flex flex-row items-center justify-evenly w-[80%]">
@@ -158,7 +162,7 @@ export default function SignUp() {
                       value={newUserData.password}
                       onChange={handleChange}
                       required
-                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none" />
+                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
               </div>
               
               <div className="flex flex-row items-center justify-evenly w-[80%]">
@@ -170,7 +174,7 @@ export default function SignUp() {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       required
-                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none" />
+                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
               </div>
               
               <div className="flex flex-row items-center justify-evenly w-[80%]">
@@ -180,7 +184,7 @@ export default function SignUp() {
                       id="profileImage"
                       name="profileImage"
                       onChange={handleChange}
-                      className="font-inkfree text-black text-2xl bg-gray-400 border-black border-2 rounded-full p-2 pl-6 pt-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none" />
+                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 pl-6 pt-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
               </div>
             </div>
           </div>
