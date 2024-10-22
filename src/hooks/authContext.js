@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
 import api from './api';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -8,8 +9,11 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState('');
 
+  const navigate = useNavigate('');
+
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser');
+    console.log(loggedUserJSON);
 
     if (loggedUserJSON) {
       setUser(JSON.parse(loggedUserJSON));
@@ -26,11 +30,19 @@ export const AuthProvider = ({ children }) => {
         window.localStorage.setItem('loggedUser', JSON.stringify(user));
         window.localStorage.setItem('token', token);
 
-        return message;
+        setUser(user);
+        setToken(token);
+
+        return {
+          status: 200,
+          message: message,
+        };
       }
     } catch (err) {
-      console.error(err);
-      return err.response.data.message;
+      return {
+        status: err.status,
+        message: err.response.data.message
+      };
     };
   };
 
@@ -40,6 +52,10 @@ export const AuthProvider = ({ children }) => {
 
     setUser(null);
     setToken('');
+
+    setTimeout(() => {
+      return navigate('/auth/login');
+    }, 1000);
   };
 
   return (
