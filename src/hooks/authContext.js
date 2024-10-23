@@ -13,10 +13,11 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser');
-    console.log(loggedUserJSON);
+    const token = window.localStorage.getItem('token');
 
-    if (loggedUserJSON) {
+    if (loggedUserJSON && token) {
       setUser(JSON.parse(loggedUserJSON));
+      setToken(token);
     }
   }, []);
 
@@ -27,18 +28,35 @@ export const AuthProvider = ({ children }) => {
       if (response.status === 200) {
         const { message, token, user } = response.data;
 
-        window.localStorage.setItem('loggedUser', JSON.stringify(user));
-        window.localStorage.setItem('token', token);
+        const rememberMeResponse = await api.patch(`/hub/users/${user._id}`, {
+          'isRemembered': postData.rememberMe,
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-        setUser(user);
-        setToken(token);
-
-        return {
-          status: 200,
-          message: message,
-        };
+        if (rememberMeResponse.status === 200) {
+          window.localStorage.setItem('loggedUser', JSON.stringify(user));
+          window.localStorage.setItem('token', token);
+  
+          setUser(user);
+          setToken(token);
+  
+          return {
+            status: 200,
+            message: message,
+          };
+        } else {
+          console.log(rememberMeResponse);
+          return {
+            status: rememberMeResponse.status,
+            message: rememberMeResponse.message,
+          }
+        }
       }
     } catch (err) {
+      console.error(err);
       return {
         status: err.status,
         message: err.response.data.message
