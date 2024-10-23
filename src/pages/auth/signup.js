@@ -28,7 +28,7 @@ export default function SignUp() {
     if (e.target.name === 'profileImage') {
       setNewUserData({
         ...newUserData,
-        profileImage: URL.createObjectURL(e.target.files[0]),
+        profileImage: e.target.files[0],
       });
     } else {
       setNewUserData({
@@ -86,7 +86,6 @@ export default function SignUp() {
                 <input type="text"
                       id="firstName"
                       name="firstName"
-                      value={newUserData.firstName}
                       onChange={handleChange}
                       required
                       className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
@@ -98,7 +97,6 @@ export default function SignUp() {
                 <input type="text"
                       id="lastName"
                       name="lastName"
-                      value={newUserData.lastName}
                       onChange={handleChange}
                       required
                       className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
@@ -110,7 +108,6 @@ export default function SignUp() {
                 <input type="email"
                       id="email"
                       name="email"
-                      value={newUserData.email}
                       onChange={handleChange}
                       required
                       className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
@@ -122,7 +119,6 @@ export default function SignUp() {
                 <input type="text"
                       id="username"
                       name="username"
-                      value={newUserData.username}
                       onChange={handleChange}
                       required
                       className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
@@ -134,7 +130,6 @@ export default function SignUp() {
                 <input type="text"
                       id="discordUsername"
                       name="discordUsername"
-                      value={newUserData.discordUsername}
                       onChange={handleChange}
                       className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
               </div>
@@ -147,7 +142,6 @@ export default function SignUp() {
                 <input type="tel"
                       id="phoneNumber"
                       name="phoneNumber"
-                      value={newUserData.phoneNumber}
                       onChange={handleChange}
                       required
                       className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
@@ -159,7 +153,6 @@ export default function SignUp() {
                 <input type="text"
                       id="password"
                       name="password"
-                      value={newUserData.password}
                       onChange={handleChange}
                       required
                       className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
@@ -171,7 +164,6 @@ export default function SignUp() {
                 <input type="text"
                       id="confirmPassword"
                       name="confirmPassword"
-                      value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       required
                       className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
