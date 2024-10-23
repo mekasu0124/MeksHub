@@ -7,6 +7,7 @@ export default function Login() {
   const [postData, setPostData] = useState({
     username: '',
     password: '',
+    rememberMe: false,
   });
 
   const { login } = useAuth();
@@ -19,10 +20,17 @@ export default function Login() {
   const [successText, setSuccessText] = useState('');
 
   const handleChange = async (e) => {
-    setPostData({
-     ...postData,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === 'rememberMe') {
+      setPostData({
+        ...postData,
+        [e.target.name]: e.target.checked,
+      });
+    } else {
+      setPostData({
+       ...postData,
+        [e.target.name]: e.target.value,
+      });
+    };
   };
 
   const handleSubmit = async (e) => {
@@ -43,19 +51,20 @@ export default function Login() {
           return navigate('/hub/dashboard');
         }, 3000);
       } else {
-        setErrorText(response);
+        setErrorText(response.message);
         setIsError(true);
 
         setTimeout(() => {
           postData.username = '';
           postData.password = '';
+          postData.rememberMe = false;
 
           setIsError(false);
           return setErrorText('');
         }, 5000);
       }
     } catch (err) {
-      setErrorText(err);
+      setErrorText(err.message);
       setIsError(true);
 
       setTimeout(() => {
@@ -65,7 +74,8 @@ export default function Login() {
         return setPostData({
           username: '',
           password: '',
-        })
+          rememberMe: false,
+        });
       }, 5000);
     }
   };
@@ -109,12 +119,23 @@ export default function Login() {
               </div>
             </div>
 
+            <div className="flex flex-row items-center justify-center w-[60%] flex-shrink-0">
+              <input type="checkbox"
+                     id="rememberMe"
+                     name="rememberMe"
+                     checked={postData.rememberMe ? true : false}
+                     onChange={handleChange}
+                     className="text-black text-2xl w-[20px] h-[20px] outline-none focus:outline-none" />
+
+              <label htmlFor="rememberMe" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[40%] ml-5">Remember Me</label>
+            </div>
+
             <div className="flex flex-col items-center justify-center w-full h-14 flex-shrink-0">
               {isError && (<div className="bg-red-950 text-gray-400 text-center rounded-full border-2 border-black w-[20%] p-1">{errorText}</div>)}
               {isSuccess && (<div className="bg-green-950 text-gray-400 text-center rounded-full border-2 border-black w-[20%] p-1">{successText}</div>)}
             </div>
 
-            <div className="flex flex-col items-center justify-center w-full p-2">
+            <div className="flex flex-col items-center justify-center w-full p-2 mb-3">
               <div className="flex flex-row item-center justify-evenly w-full mb-5">
                 <button 
                   type="button" 
