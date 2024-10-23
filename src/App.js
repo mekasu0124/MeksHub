@@ -7,6 +7,7 @@ import Login from './pages/auth/login';
 import ForgotPassword from './pages/auth/forgot';
 import Dashboard from './pages/dashboard/dashboard';
 import AdminDashboard from './pages/admin/dashboard.js';
+import ModifyApps from './pages/admin/apps/modifyApps.js';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
 
             <Route path="admin">
               <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="modify-apps" element={<ModifyApps />} />
             </Route>
           </Route>
         </Routes>
