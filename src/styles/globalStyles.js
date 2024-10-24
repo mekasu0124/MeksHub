@@ -7,11 +7,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   :root {
-    --bg: #221b18;
-    --bg2: #523c2c;
-    --bd: #6c6257;
-    --btn-hover: #a2784e;
-    --fg: #9ca09d;
+    --bg: #141619;
+    --bg2: #050A44;
+    --bd: #2C2E3A;
+    --btn-hover: #0A21C0;
+    --fg: #B3B4BD;
   }
 
   body {
