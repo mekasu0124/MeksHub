@@ -67,19 +67,17 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex flex-col w-full min-h-screen">
-      <div className="flex flex-row justify-start items-center w-full">
-        <div className="flex flex-col items-center justify-center w-full flex-shrink-0 mt-5">
-          <h1 className="font-inkfree italic text-fg text-3xl tracking-widest">
-            Creating A New Account
-          </h1>
-        </div>
+    <div className="flex flex-col w-full sm:min-h-screen">
+      <div className="flex flex-col items-center justify-center w-full sm:flex-shrink-0 mt-5">
+        <h1 className="font-inkfree italic text-fg sm:text-xl md:text-2xl lg:text-3xl tracking-widest">
+          Creating A New Account
+        </h1>
       </div>
 
-      <div className="flex flex-col items-center justify-center w-full flex-1 mt-5">
-        <form className="flex flex-col items-center justify-evenly w-full h-[800px]" onSubmit={handleSubmit}>
-          <div className="flex flex-row items-center justify-evenly w-full mb-5">
-            <div className="flex flex-col items-center justify-evenly w-[45%] h-[600px] shadow-black shadow-xl rounded-xl">
+      <div className="sm:flex lg:flex flex-col items-center justify-center sm:w-full lg:w-full sm:flex-1 mt-5">
+        <form className="sm:flex lg:flex flex-col items-center justify-evenly sm:w-full lg:w-full h-[800px]" onSubmit={handleSubmit}>
+          <div className="sm:flex lg:flex sm:flex-col lg:flex-row sm:items-center sm:justify-center lg:justify-evenly sm:w-full lg:w-full flex-1">
+            <div className="sm:flex flex-col items-center sm:justify-center lg:justify-evenly sm:w-[45%] sm:h-[600px] shadow-black shadow-xl rounded-xl">
               <div className="flex flex-row items-center justify-evenly w-[80%]">
                 <label htmlFor="firstName" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">First Name</label>
                 
@@ -135,7 +133,7 @@ export default function SignUp() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-evenly w-[45%] h-[600px] shadow-black shadow-xl rounded-xl">
+            <div className="sm:flex flex-col items-center sm:justify-center lg:justify-evenly sm:w-[45%] sm:h-[600px] shadow-black shadow-xl rounded-xl">
               <div className="flex flex-row items-center justify-evenly w-[80%]">
                 <label htmlFor="phoneNumber" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Phone Number</label>
                 
@@ -181,12 +179,12 @@ export default function SignUp() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-center w-full h-14">
-            {isError && (<div className="bg-red-950 text-gray-400 text-center rounded-full border-2 border-black w-[20%] p-1">{errorText}</div>)}
-            {isSuccess && (<div className="bg-green-950 text-gray-400 text-center rounded-full border-2 border-black w-[20%] p-1">{successText}</div>)}
+          <div className="sm:flex lg:flex sm:flex-col lg:flex-col items-center justify-center sm:w-[80%] lg:w-full h-14">
+            {isError && (<div className="bg-red-950 text-gray-400 text-center rounded-full border-2 border-black sm:w-[80%] lg:w-[30%] sm:text-base lg:text-2xl p-1">{errorText}</div>)}
+            {isSuccess && (<div className="bg-green-950 text-gray-400 text-center rounded-full border-2 border-black sm:w-[80%] lg:w-[20%] sm:text-base lg:text-2xl p-1">{successText}</div>)}
           </div>
 
-          <div className="flex flex-row items-center justify-evenly w-full flex-shrink-0">
+          <div className="sm:flex lg:flex sm:flex-col lg:flex-row items-center justify-evenly w-full flex-shrink-0">
             <button type="button" onClick={() => navigate('/')} className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none">Cancel</button>
             <button type="submit" className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none">Create Account</button>
           </div>
