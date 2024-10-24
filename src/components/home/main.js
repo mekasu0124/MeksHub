@@ -25,7 +25,7 @@ export default function Main() {
       </TitleContainer>
 
       <BodyContainer>
-        <InnerBodyContainer>
+        <InnerBodyContainer style={{ border: 'none' }}>
           <InnerBodyContainer2>
             <BodyLabel>Unlock A World of Possibilites</BodyLabel>
             
@@ -61,7 +61,7 @@ export default function Main() {
           </InnerBodyContainer2>
         </InnerBodyContainer>
 
-        <InnerBodyContainer>
+        <InnerBodyContainer style={{ border: 'none' }}>
           <NavLink to="/auth/signup">Sign Up</NavLink>
           <NavLink to="/auth/login">Login</NavLink>
         </InnerBodyContainer>
