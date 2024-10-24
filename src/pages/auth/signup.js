@@ -1,6 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import {
+  SignupContainer,
+  TitleContainer,
+  Title,
+  BodyContainer,
+  FormContainer,
+  InnerFormContainer,
+  InnerFormContainer2,
+  FormRow,
+  FormLabel,
+  FormInput,
+  FormInputFile,
+  FormButton,
+  ErrorLabel,
+  SuccessLabel
+} from '../../styles/pages/signup.style';
+
 import api from '../../hooks/api';
 
 export default function SignUp() {
@@ -30,6 +47,8 @@ export default function SignUp() {
         ...newUserData,
         profileImage: e.target.files[0],
       });
+    } else if (e.target.name === 'confirmPassword') {
+      setConfirmPassword(e.target.value);
     } else {
       setNewUserData({
         ...newUserData,
@@ -40,6 +59,23 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (newUserData.password !== confirmPassword) {
+      setErrorText("Passwords Do Not Match! Try Again!");
+      setIsError(true);
+
+      setTimeout(() => {
+        setIsError(false);
+        setErrorText('');
+
+        setNewUserData({
+          ...newUserData,
+          password: '',
+        });
+
+        return setConfirmPassword('');
+      }, 5000);
+    }
 
     try {
       const response = await api.post('/hub/auth/signup', newUserData);
@@ -67,129 +103,75 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex flex-col w-full sm:min-h-screen">
-      <div className="flex flex-col items-center justify-center w-full sm:flex-shrink-0 mt-5">
-        <h1 className="font-inkfree italic text-fg sm:text-xl md:text-2xl lg:text-3xl tracking-widest">
-          Creating A New Account
-        </h1>
-      </div>
+    <SignupContainer>
+      <TitleContainer>
+        <Title>Creating A New Account</Title>
+      </TitleContainer>
 
-      <div className="sm:flex lg:flex flex-col items-center justify-center sm:w-full lg:w-full sm:flex-1 mt-5">
-        <form className="sm:flex lg:flex flex-col items-center justify-evenly sm:w-full lg:w-full h-[800px]" onSubmit={handleSubmit}>
-          <div className="sm:flex lg:flex sm:flex-col lg:flex-row sm:items-center sm:justify-center lg:justify-evenly sm:w-full lg:w-full flex-1">
-            <div className="sm:flex flex-col items-center sm:justify-center lg:justify-evenly sm:w-[45%] sm:h-[600px] shadow-black shadow-xl rounded-xl">
-              <div className="flex flex-row items-center justify-evenly w-[80%]">
-                <label htmlFor="firstName" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">First Name</label>
-                
-                <input type="text"
-                      id="firstName"
-                      name="firstName"
-                      onChange={handleChange}
-                      required
-                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
-              </div>
+      <BodyContainer>
+        <FormContainer onSubmit={handleSubmit}>
+          <InnerFormContainer>
+            <InnerFormContainer2>
+              <FormRow>
+                <FormLabel htmlFor="firstName">First Name</FormLabel>
+                <FormInput type="text" id="firstName" name="firstName" onChange={handleChange} required />
+              </FormRow>
               
-              <div className="flex flex-row items-center justify-evenly w-[80%]">
-                <label htmlFor="lastName" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Last Name</label>
-                
-                <input type="text"
-                      id="lastName"
-                      name="lastName"
-                      onChange={handleChange}
-                      required
-                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
-              </div>
+              <FormRow>
+                <FormLabel htmlFor="lastName">Last Name</FormLabel>
+                <FormInput type="text" id="lastName" name="lastName" onChange={handleChange} required />
+              </FormRow>
               
-              <div className="flex flex-row items-center justify-evenly w-[80%]">
-                <label htmlFor="email" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Email Address</label>
-                
-                <input type="email"
-                      id="email"
-                      name="email"
-                      onChange={handleChange}
-                      required
-                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
-              </div>
+              <FormRow>
+                <FormLabel htmlFor="email">Email Address</FormLabel>
+                <FormInput type="email" id="email" name="email" onChange={handleChange} required />
+              </FormRow>
               
-              <div className="flex flex-row items-center justify-evenly w-[80%]">
-                <label htmlFor="username" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Create Username</label>
-                
-                <input type="text"
-                      id="username"
-                      name="username"
-                      onChange={handleChange}
-                      required
-                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
-              </div>
+              <FormRow>
+                <FormLabel htmlFor="username">Create Username</FormLabel>
+                <FormInput type="text" id="username" name="username" onChange={handleChange} required />
+              </FormRow>
               
-              <div className="flex flex-row items-center justify-evenly w-[80%]">
-                <label htmlFor="discordUsername" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Discord Username (optional)</label>
-                
-                <input type="text"
-                      id="discordUsername"
-                      name="discordUsername"
-                      onChange={handleChange}
-                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
-              </div>
-            </div>
+              <FormRow>
+                <FormLabel htmlFor="discordUsername">Discord Username (optional)</FormLabel>
+                <FormInput type="text" id="discordUsername" name="discordUsername" onChange={handleChange} />
+              </FormRow>
+            </InnerFormContainer2>
 
-            <div className="sm:flex flex-col items-center sm:justify-center lg:justify-evenly sm:w-[45%] sm:h-[600px] shadow-black shadow-xl rounded-xl">
-              <div className="flex flex-row items-center justify-evenly w-[80%]">
-                <label htmlFor="phoneNumber" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Phone Number</label>
-                
-                <input type="tel"
-                      id="phoneNumber"
-                      name="phoneNumber"
-                      onChange={handleChange}
-                      required
-                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
-              </div>
+            <InnerFormContainer2>
+              <FormRow>
+                <FormLabel htmlFor="phoneNumber">Phone Number</FormLabel>
+                <FormInput type="tel" id="phoneNumber" name="phoneNumber" onChange={handleChange} required />
+              </FormRow>
               
-              <div className="flex flex-row items-center justify-evenly w-[80%]">
-                <label htmlFor="password" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Create Password</label>
-                
-                <input type="text"
-                      id="password"
-                      name="password"
-                      onChange={handleChange}
-                      required
-                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
-              </div>
+              <FormRow>
+                <FormLabel htmlFor="password">Create Password</FormLabel>
+                <FormInput type="text" id="password" name="password" onChange={handleChange} required />
+              </FormRow>
               
-              <div className="flex flex-row items-center justify-evenly w-[80%]">
-                <label htmlFor="confirmPassword" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Confirm Password</label>
-                
-                <input type="text"
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      required
-                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
-              </div>
+              <FormRow>
+                <FormLabel htmlFor="confirmPassword">Confirm Password</FormLabel>
+                <FormInput type="text" id="confirmPassword" name="confirmPassword" onChange={handleChange} required />
+              </FormRow>
               
-              <div className="flex flex-row items-center justify-evenly w-[80%]">
-                <label htmlFor="profileImage" className="font-inkfree font-bold tracking-widest text-fg text-2xl w-[25%]">Select Profile Image (optional)</label>
-                
-                <input type="file"
-                      id="profileImage"
-                      name="profileImage"
-                      onChange={handleChange}
-                      className="font-inkfree text-black text-2xl border-black border-2 rounded-full p-2 pl-6 pt-2 text-center w-[70%] h-[60px] outline-none hover:outline-none focus:outline-none bg-gradient-to-br from-bg2 via-bd to-bg2" />
-              </div>
-            </div>
-          </div>
+              <FormRow>
+                <FormLabel htmlFor="profileImage">Select Profile Image (optional)</FormLabel>
+                <FormInputFile type="file" id="profileImage" name="profileImage" onChange={handleChange} />
+              </FormRow>
+            </InnerFormContainer2>
+          </InnerFormContainer>
 
-          <div className="sm:flex lg:flex sm:flex-col lg:flex-col items-center justify-center sm:w-[80%] lg:w-full h-14">
-            {isError && (<div className="bg-red-950 text-gray-400 text-center rounded-full border-2 border-black sm:w-[80%] lg:w-[30%] sm:text-base lg:text-2xl p-1">{errorText}</div>)}
-            {isSuccess && (<div className="bg-green-950 text-gray-400 text-center rounded-full border-2 border-black sm:w-[80%] lg:w-[20%] sm:text-base lg:text-2xl p-1">{successText}</div>)}
-          </div>
+          <InnerFormContainer style={{ width: '80%', height: '3.5rem' }}>
+            {isError && (<ErrorLabel>{errorText}</ErrorLabel>)}
+            {isSuccess && (<SuccessLabel>{successText}</SuccessLabel>)}
+          </InnerFormContainer>
 
-          <div className="sm:flex lg:flex sm:flex-col lg:flex-row items-center justify-evenly w-full flex-shrink-0">
-            <button type="button" onClick={() => navigate('/')} className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none">Cancel</button>
-            <button type="submit" className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none">Create Account</button>
-          </div>
-        </form>
-      </div>
-    </div>
+          <InnerFormContainer style={{ flexShrink: 0 }}>
+            <FormButton type="button" onClick={() => navigate('/')} className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none">Cancel</FormButton>
+            <FormButton type="submit" className="font-inkfree font-bold text-black text-2xl w-[300px] h-[60px] border-black border-2 rounded-full outline-none focus:outline-none hover:outline-none">Create Account</FormButton>
+          </InnerFormContainer>
+        </FormContainer>
+      </BodyContainer>
+    </SignupContainer>
   );
 };
