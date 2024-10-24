@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './hooks/authContext';
 
+import GlobalStyle from './styles/globalStyles';
+
 import Home from './pages/home';
 import SignUp from './pages/auth/signup';
 import Login from './pages/auth/login';
@@ -12,6 +14,8 @@ import ModifyApps from './pages/admin/apps/modifyApps.js';
 function App() {
   return (
     <div className="App">
+      <GlobalStyle />
+      
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Home />} />
