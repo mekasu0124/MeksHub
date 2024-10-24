@@ -22,8 +22,7 @@ export const TitleContainer = styled.div`
 
   @media only screen and (max-width: 480px),
                          (max-width: 768px) {
-    justify-content: center;
-    background-color: green;
+    display: none;
   }
 
   @media only screen and (max-width: 1024px),
@@ -37,20 +36,6 @@ export const ImageContainer = styled.div`
   justify-content: start;
   width: 80%;
   padding: 10px;
-
-  @media only screen and (max-width: 480px) {
-    width: 20%;
-    background-color: orange;
-  }
-
-  @media only screen and (max-width: 768px) {
-  }
-
-  @media only screen and (max-width: 1024px) {
-    width: 60%;
-  }
-
-  @media only screen and (max-width: 1200px) {}
 `;
 
 export const InnerTitleContainer = styled.div`
@@ -60,18 +45,6 @@ export const InnerTitleContainer = styled.div`
   justify-content: end;
   width: 20%;
   padding: 10px;
-
-  @media only screen and (max-width: 480px),
-                         (max-width: 768px) {
-    background-color: yellow;
-    width: 80%;
-  }
-
-  @media only screen and (max-width: 1024px) {
-    width: 40%;
-  }
-
-  @media only screen and (max-width: 1200px) {}
 `;
 
 export const Title = styled.h1`
@@ -80,15 +53,6 @@ export const Title = styled.h1`
   font-style: italic;
   font-size: 1.5rem;
   color: var(--fg);
-
-  @media only screen and (max-width: 480px),
-                         (max-width: 768px) {
-    font-size: 1.2rem;
-    background-color: blue;
-  }
-
-  @media only screen and (max-width: 1024px),
-                         (max-width: 1200px) {}
 `;
 
 export const SubTitle = styled.h3`
@@ -97,15 +61,6 @@ export const SubTitle = styled.h3`
   font-style: italic;
   font-size: 1.2rem;
   color: var(--fg);
-
-  @media only screen and (max-width: 480px),
-                         (max-width: 768px) {
-    font-size: 1rem;
-    background-color: red;
-  }
-
-  @media only screen and (max-width: 1024px), 
-                         (max-width: 1200px) {}
 `;
 
 export const Img = styled.img`
