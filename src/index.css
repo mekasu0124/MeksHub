@@ -8,11 +8,11 @@
 }
 
 :root {
-  --bg: #221b18;
-  --bg2: #523c2c;
-  --bd: #6c6257;
-  --btn-hover: #a2784e;
-  --fg: #9ca09d;
+  --bg: #141619;
+  --bg2: #050A44;
+  --bd: #2C2E3A;
+  --btn-hover: #0A21C0;
+  --fg: #B3B4BD;
 }
 
 body {
@@ -26,12 +26,13 @@ body {
     var(--bg2), 
     var(--bg2)
   );
-  letter-spacing: 0.1em;
-  word-spacing: 0.1em;
 }
 
-.active {
-  font-size: 1.3rem;
-  font-weight: bold;
-  text-decoration: underline;
-}
+
+/*
+--bg: #;
+--bg2: #;
+--bd: #;
+--btn-hover: #;
+--fg: #;
+*/
