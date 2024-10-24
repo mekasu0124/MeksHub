@@ -13,16 +13,19 @@ export const FooterContainer = styled.footer`
 
 export const FooterText = styled.p`
   font-family: "Inkfree", cursive;
-  font-weight: normal;
   font-style: italic;
   font-size: 1rem;
   color: var(--fg);
-  padding: 0;
-  transition: font-size 0.5s ease-in, padding 0.7s ease-in, font-weight 1s ease-in;
 
-  &:hover {
-    font-size: 1.2rem;
-    padding: 1rem;
-    font-weight: bold;
+  @media only screen and (min-width: 1024px) {
+    padding: 0;
+    font-weight: normal;
+    transition: font-size 0.5s ease-in, padding 0.7s ease-in, font-weight 1s ease-in;
+
+    &:hover {
+      font-size: 1.2rem;
+      padding: 1rem;
+      font-weight: bold;
+    }
   }
 `;
