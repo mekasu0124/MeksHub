@@ -1,53 +1,71 @@
+import {
+  MainContainer,
+  TitleContainer,
+  BodyContainer,
+  InnerBodyContainer,
+  InnerBodyContainer2,
+  Title,
+  SubTitle,
+  BodyLabel,
+  BodyText,
+  NavLink
+} from '../../styles/components/main.style';
+
 export default function Main() {
   return (
-    <main className="flex flex-col items-center justify-start w-full flex-1">
-      <div className="flex flex-col items-center justify-center w-full flex-shrink-0 mt-5">
-        <h1 className="font-inkfree italic text-fg text-3xl tracking-widest">
+    <MainContainer>
+      <TitleContainer>
+        <Title>
           Welcome To Mek&#39;s Hub!
-        </h1>
+        </Title>
 
-        <h3 className="font-inkfree italic text-fg text-xl mt-2 tracking-widest">
+        <SubTitle>
           A Platform Full Of Software For Users To Enjoy!
-        </h3>
-      </div>
+        </SubTitle>
+      </TitleContainer>
 
-      <div className="flex flex-row items-center justify-evenly flex-1 w-full">
-        <div className="flex flex-col items-center justify-evenly w-[30%] h-[500px] shadow-black shadow-xl rounded-lg p-2">
-          <h3 className="font-inkfree text-fg text-3xl font-bold italic underline tracking-wider">
-            Unlock A World of Possibilites
-          </h3>
+      <BodyContainer>
+        <InnerBodyContainer>
+          <InnerBodyContainer2>
+            <BodyLabel>Unlock A World of Possibilites</BodyLabel>
+            
+            <BodyText>
+              Dive into our curated collection of applications developed by Mek & 
+              Friends. Whether you&#39;re seeking solutions to everyday problems or 
+              innovative tools, we&#39;ve got you covered. Each app is created with 
+              care, ensuring quality and creativity in every click.
+            </BodyText>
+          </InnerBodyContainer2>
           
-          <p className="font-inkfree tracking-wider text-center text-fg text-2xl">
-            Dive into our curated collection of applications developed by Mek & 
-            Friends. Whether you&#39;re seeking solutions to everyday problems or 
-            innovative tools, we&#39;ve got you covered. Each app is created with 
-            care, ensuring quality and creativity in every click.
-          </p>
-        </div>
-        
-        <div className="flex flex-col items-center justify-evenly w-[30%] h-[500px] shadow-black shadow-xl rounded-lg p-2">
-          <h3 className="font-inkfree text-fg text-2xl font-bold italic underline tracking-wider">Community-Driven Development</h3>
+          <InnerBodyContainer2>
+            <BodyLabel>Community-Driven Development</BodyLabel>
+            
+            <BodyText>
+              At Mek's Hub, we believe in the power of teamwork and open 
+              collaboration. Our community of developers and users work 
+              together to create software that not only meets real-world 
+              needs but also fosters creativity and innovation. Be part of
+              our journey! 
+            </BodyText>
+          </InnerBodyContainer2>
           
-          <p className="font-inkfree tracking-wider text-center text-fg text-2xl">
-            At Mek's Hub, we believe in the power of teamwork and open 
-            collaboration. Our community of developers and users work 
-            together to create software that not only meets real-world 
-            needs but also fosters creativity and innovation. Be part of
-            our journey! 
-          </p>
-        </div>
-        
-        <div className="flex flex-col items-center justify-evenly w-[30%] h-[500px] shadow-black shadow-xl rounded-lg p-2">
-          <h3 className="font-inkfree text-fg text-2xl font-bold italic underline tracking-wider">Open Source & Beyond</h3>
+          <InnerBodyContainer2>
+            <BodyLabel>Open Source & Beyond</BodyLabel>
 
-          <p className="font-inkfree tracking-wider text-center text-fg text-2xl">
-            From FOSS projects to unique proprietary solutions, our platform 
-            features a blend of software that caters to all. Discover tools 
-            built to empower you and your team, and contribute to the future 
-            of technology with us. Your next favorite app is just a click away!
-          </p>
-        </div>
-      </div>
-    </main>
+            <BodyText>
+              From FOSS projects to unique proprietary solutions, our platform 
+              features a blend of software that caters to all. Discover tools 
+              built to empower you and your team, and contribute to the future 
+              of technology with us. Your next favorite app is just a click away!
+            </BodyText>
+          </InnerBodyContainer2>
+        </InnerBodyContainer>
+
+        <InnerBodyContainer>
+          <NavLink to="/auth/signup">Sign Up</NavLink>
+          <NavLink to="/auth/login">Login</NavLink>
+        </InnerBodyContainer>
+      </BodyContainer>
+    </MainContainer>
   );
 };
